@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title> Crampé Vitae</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <div class="app">
+    <section class="form-panel">
+      <h1>Crampé Vitae</h1>
+      <p class="subtitle">
+        Because sometimes job opportunities happen on the way somewhere else: walk in for coffee, walk out applying for a job.
+      </p>
+
+      <div class="section-title">Personal Information</div>
+
+      <div class="form-group">
+        <label for="profileImage">Profile Picture</label>
+        <input type="file" id="profileImage" accept="image/*" />
+      </div>
+
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="Enter your full name" />
+      </div>
+
+      <div class="form-group">
+        <label for="jobTitle">Desired Job Title</label>
+        <input type="text" id="jobTitle" placeholder="Example: Front-End Developer" />
+      </div>
+
+      <div class="form-group">
+        <label for="contactNumber">Contact Number</label>
+        <input type="text" id="contactNumber" placeholder="Enter your contact number" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" />
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" id="address" placeholder="Enter your address" />
+      </div>
+
+      <div class="section-title">Career Objective</div>
+      <div class="form-group">
+        <label for="objective">Career Objective</label>
+        <textarea id="objective" placeholder="Write your career objective here"></textarea>
+      </div>
+
+      <div class="section-title">Education</div>
+      <div class="form-group">
+        <label for="education">Education</label>
+        <textarea id="education" placeholder="Example:
+Bachelor of Science in Computer Science | PUP Sta. Mesa | 2022 - Present
+Senior High School | School Name | 2020 - 2022"></textarea>
+        <p class="small-note">Put one item per line. Use this format: Degree or School | School Name | Year</p>
+      </div>
+
+      <div class="section-title">Work Experience</div>
+      <div class="form-group">
+        <label for="experience">Work Experience</label>
+        <textarea id="experience" placeholder="Example:
+IT Intern | Accenture Philippines | Assisted in software testing and documentation
+Sales Associate | SM Store | Helped customers and managed daily inventory"></textarea>
+        <p class="small-note">Put one item per line. Use this format: Role | Company | Description</p>
+      </div>
+
+      <div class="section-title">Skills</div>
+      <div class="form-group">
+        <label for="skills">Skills</label>
+        <textarea id="skills" placeholder="Example:
+HTML
+CSS
+JavaScript
+Communication
+Time Management"></textarea>
+        <p class="small-note">Put one skill per line.</p>
+      </div>
+
+      <div class="section-title">Certifications</div>
+      <div class="form-group">
+        <label for="certifications">Certifications</label>
+        <textarea id="certifications" placeholder="Example:
+Google Digital Marketing Certificate
+Introduction to Cybersecurity"></textarea>
+      </div>
+
+      <div class="section-title">Achievements</div>
+      <div class="form-group">
+        <label for="achievements">Achievements</label>
+        <textarea id="achievements" placeholder="Example:
+Dean's Lister
+Best in Research
+Top 10 in Coding Competition"></textarea>
+      </div>
+
+      <div class="section-title">References</div>
+      <div class="form-group">
+        <label for="references">References</label>
+       <textarea id="references" placeholder="Example:
+Lharsen Denielle Miranda - Software Engineer, Accenture Philippines - lharsen.miranda@gmail.com
+Arnold D. Llamas - IT Supervisor, Globe Telecom - arnold.llamas@gmail.com"></textarea>
+
+      <div class="btn-row">
+        <button class="primary-btn" onclick="generateResume()">Generate Resume</button>
+        <button class="secondary-btn" onclick="fillSampleData()">Load Sample Data</button>
+        <button class="danger-btn" onclick="clearForm()">Clear Form</button>
+      </div>
+
+      <div class="btn-row">
+        <button class="secondary-btn" onclick="window.print()">Print / Save as PDF</button>
+      </div>
+
+      <div class="tips-box">
+        <h3>Resume Completeness Checker</h3>
+        <ul id="suggestionsList">
+          <li>Enter your details to see smart suggestions.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="preview-panel">
+      <div class="resume" id="resumePreview">
+        <aside class="resume-left">
+          <img id="previewImage" class="profile-image" alt="Profile Image" src="https://via.placeholder.com/140x140.png?text=Photo" />
+
+          <div class="left-block">
+            <h2>Contact</h2>
+            <div class="contact-item" id="previewPhone">No contact number yet</div>
+            <div class="contact-item" id="previewEmail">No email yet</div>
+            <div class="contact-item" id="previewAddress">No address yet</div>
+          </div>
+
+          <div class="left-block" id="skillsBlock">
+            <h2>Skills</h2>
+            <ul id="previewSkills">
+              <li class="placeholder">No skills added</li>
+            </ul>
+          </div>
+
+          <div class="left-block" id="certificationsBlock">
+            <h2>Certifications</h2>
+            <ul id="previewCertifications">
+              <li class="placeholder">No certifications added</li>
+            </ul>
+          </div>
+        </aside>
+
+        <main class="resume-right">
+          <div class="name" id="previewName">YOUR NAME</div>
+          <div class="job-title" id="previewJobTitle">Desired Job Title</div>
+
+          <div class="resume-block" id="objectiveBlock">
+            <h2>Profile / Objective</h2>
+            <p id="previewObjective" class="placeholder">Your career objective will appear here.</p>
+          </div>
+
+          <div class="resume-block" id="educationBlock">
+            <h2>Education</h2>
+            <div id="previewEducation">
+              <p class="placeholder">No education details added.</p>
+            </div>
+          </div>
+
+          <div class="resume-block" id="experienceBlock">
+            <h2>Work Experience</h2>
+            <div id="previewExperience">
+              <p class="placeholder">No work experience added.</p>
+            </div>
+          </div>
+
+          <div class="resume-block" id="achievementsBlock">
+            <h2>Achievements</h2>
+            <ul id="previewAchievements">
+              <li class="placeholder">No achievements added.</li>
+            </ul>
+          </div>
+
+          <div class="resume-block" id="referencesBlock">
+            <h2>References</h2>
+            <ul id="previewReferences">
+              <li class="placeholder">No references added.</li>
+            </ul>
+          </div>
+        </main>
+      </div>
+    </section>
+  </div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
