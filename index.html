@@ -1,21 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title> Crampé Vitae</title>
+  <title>Resume & Go</title>
 
-<link rel="stylesheet" href="style.css">
-
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <header class="page-header">
+    <h1>Resume & Go</h1>
+    <p class="subtitle">
+      Fill it out in minutes, save it instantly, and be ready to apply for job opportunities within the day.
+    </p>
+  </header>
+
   <div class="app">
+    <!-- LEFT SIDE: FORM PANEL -->
     <section class="form-panel">
-      <h1>Crampé Vitae</h1>
-      <p class="subtitle">
-        Because sometimes job opportunities happen on the way somewhere else: walk in for coffee, walk out applying for a job.
-      </p>
+      <div class="theme-picker">
+        <label class="theme-label">Resume Color Choices</label>
+
+        <div class="theme-options">
+          <button
+            type="button"
+            class="color-circle active"
+            style="background: #173753;"
+            onclick="changeResumeColor('#173753', this)"
+            title="Navy Blue"
+          ></button>
+
+          <button
+            type="button"
+            class="color-circle"
+            style="background: #000000;"
+            onclick="changeResumeColor('#000000', this)"
+            title="Black"
+          ></button>
+
+          <button
+            type="button"
+            class="color-circle"
+            style="background: #800020;"
+            onclick="changeResumeColor('#800020', this)"
+            title="Burgundy"
+          ></button>
+
+          <button
+            type="button"
+            class="color-circle"
+            style="background: #290046;"
+            onclick="changeResumeColor('#290046', this)"
+            title="Dark Purple"
+          ></button>
+
+          <button
+            type="button"
+            class="color-circle"
+            style="background: #3b3a30;"
+            onclick="changeResumeColor('#3b3a30', this)"
+            title="Dark Olive"
+          ></button>
+        </div>
+      </div>
 
       <div class="section-title">Personal Information</div>
 
@@ -50,30 +99,38 @@
       </div>
 
       <div class="section-title">Career Objective</div>
+
       <div class="form-group">
         <label for="objective">Career Objective</label>
         <textarea id="objective" placeholder="Write your career objective here"></textarea>
       </div>
 
       <div class="section-title">Education</div>
+
       <div class="form-group">
         <label for="education">Education</label>
         <textarea id="education" placeholder="Example:
 Bachelor of Science in Computer Science | PUP Sta. Mesa | 2022 - Present
 Senior High School | School Name | 2020 - 2022"></textarea>
-        <p class="small-note">Put one item per line. Use this format: Degree or School | School Name | Year</p>
+        <p class="small-note">
+          Put one item per line. Use this format: Degree or School | School Name | Year
+        </p>
       </div>
 
       <div class="section-title">Work Experience</div>
+
       <div class="form-group">
         <label for="experience">Work Experience</label>
         <textarea id="experience" placeholder="Example:
 IT Intern | Accenture Philippines | Assisted in software testing and documentation
 Sales Associate | SM Store | Helped customers and managed daily inventory"></textarea>
-        <p class="small-note">Put one item per line. Use this format: Role | Company | Description</p>
+        <p class="small-note">
+          Put one item per line. Use this format: Role | Company | Description
+        </p>
       </div>
 
       <div class="section-title">Skills</div>
+
       <div class="form-group">
         <label for="skills">Skills</label>
         <textarea id="skills" placeholder="Example:
@@ -86,6 +143,7 @@ Time Management"></textarea>
       </div>
 
       <div class="section-title">Certifications</div>
+
       <div class="form-group">
         <label for="certifications">Certifications</label>
         <textarea id="certifications" placeholder="Example:
@@ -93,7 +151,32 @@ Google Digital Marketing Certificate
 Introduction to Cybersecurity"></textarea>
       </div>
 
+      <div class="section-title">Tools</div>
+
+      <div class="form-group">
+        <label for="tools">Tools</label>
+        <textarea id="tools" placeholder="Example:
+VS Code
+GitHub
+Figma
+Canva
+Microsoft Office"></textarea>
+        <p class="small-note">Put one tool per line.</p>
+      </div>
+
+
+      <div class="section-title">Languages</div>
+<div class="form-group">
+  <label for="languages">Languages</label>
+  <textarea id="languages" placeholder="Example:
+Filipino
+English"></textarea>
+  <p class="small-note">Put one language per line.</p>
+</div>
+
+
       <div class="section-title">Achievements</div>
+
       <div class="form-group">
         <label for="achievements">Achievements</label>
         <textarea id="achievements" placeholder="Example:
@@ -103,11 +186,13 @@ Top 10 in Coding Competition"></textarea>
       </div>
 
       <div class="section-title">References</div>
+
       <div class="form-group">
         <label for="references">References</label>
-       <textarea id="references" placeholder="Example:
+        <textarea id="references" placeholder="Example:
 Lharsen Denielle Miranda - Software Engineer, Accenture Philippines - lharsen.miranda@gmail.com
 Arnold D. Llamas - IT Supervisor, Globe Telecom - arnold.llamas@gmail.com"></textarea>
+      </div>
 
       <div class="btn-row">
         <button class="primary-btn" onclick="generateResume()">Generate Resume</button>
@@ -116,7 +201,11 @@ Arnold D. Llamas - IT Supervisor, Globe Telecom - arnold.llamas@gmail.com"></tex
       </div>
 
       <div class="btn-row">
-        <button class="secondary-btn" onclick="window.print()">Print / Save as PDF</button>
+        <button class="secondary-btn" onclick="saveResumeAsPDF()">Save as PDF</button>
+      </div>
+
+      <div class="btn-row">
+        <button class="image-btn" onclick="saveResumeAsImage()">Save as Image</button>
       </div>
 
       <div class="tips-box">
@@ -127,10 +216,16 @@ Arnold D. Llamas - IT Supervisor, Globe Telecom - arnold.llamas@gmail.com"></tex
       </div>
     </section>
 
+    <!-- RIGHT SIDE: RESUME PREVIEW PANEL -->
     <section class="preview-panel">
       <div class="resume" id="resumePreview">
         <aside class="resume-left">
-          <img id="previewImage" class="profile-image" alt="Profile Image" src="https://via.placeholder.com/140x140.png?text=Photo" />
+          <img
+            id="previewImage"
+            class="profile-image"
+            alt="Profile Image"
+            src="https://via.placeholder.com/140x140.png?text=Photo"
+          />
 
           <div class="left-block">
             <h2>Contact</h2>
@@ -152,7 +247,27 @@ Arnold D. Llamas - IT Supervisor, Globe Telecom - arnold.llamas@gmail.com"></tex
               <li class="placeholder">No certifications added</li>
             </ul>
           </div>
+
+          <div class="left-block" id="toolsBlock">
+            <h2>Tools</h2>
+            <ul id="previewTools">
+              <li class="placeholder">No tools added</li>
+            </ul>
+          </div>
+
+
+                  <div class="left-block" id="languagesBlock">
+  <h2>Languages</h2>
+  <ul id="previewLanguages">
+    <li class="placeholder">No languages added</li>
+  </ul>
+</div>
+
+
         </aside>
+
+
+
 
         <main class="resume-right">
           <div class="name" id="previewName">YOUR NAME</div>
@@ -160,7 +275,9 @@ Arnold D. Llamas - IT Supervisor, Globe Telecom - arnold.llamas@gmail.com"></tex
 
           <div class="resume-block" id="objectiveBlock">
             <h2>Profile / Objective</h2>
-            <p id="previewObjective" class="placeholder">Your career objective will appear here.</p>
+            <p id="previewObjective" class="placeholder">
+              Your career objective will appear here.
+            </p>
           </div>
 
           <div class="resume-block" id="educationBlock">
@@ -184,19 +301,23 @@ Arnold D. Llamas - IT Supervisor, Globe Telecom - arnold.llamas@gmail.com"></tex
             </ul>
           </div>
 
-          <div class="resume-block" id="referencesBlock">
-            <h2>References</h2>
-            <ul id="previewReferences">
-              <li class="placeholder">No references added.</li>
-            </ul>
-          </div>
+    <div class="resume-block" id="referencesBlock">
+  <h2>References</h2>
+  <div id="previewReferences">
+    <p class="placeholder">No references added.</p>
+  </div>
+</div>
+
         </main>
       </div>
     </section>
   </div>
 
+  <!-- LIBRARIES -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<script src="script.js"></script>
-
+  <!-- MAIN SCRIPT -->
+  <script src="script.js"></script>
 </body>
 </html>
